@@ -44,9 +44,7 @@ Plus the dotfiles themselves: **Claude Code** (settings, commands, agents, statu
 │   ├── astro.config.mjs
 │   └── package.json
 │
-├── .githooks/                ← pre-commit + post-merge (version bump + tag)
-├── scripts/                  ← install-hooks, uninstall-hooks, sync-master
-└── package.json              ← root (version + git-flow scripts)
+└── package.json              ← root (version + web scripts)
 ```
 
 ## Dotfiles Installation
@@ -89,7 +87,6 @@ The main agent acts as the router — it reads each subagent's `description` and
 ## Web (Development)
 
 ```bash
-npm install              # installs root scripts (also installs git hooks)
 npm run install:web      # installs web/ dependencies
 npm run dev              # local dev at http://localhost:4321
 npm run build            # static build into web/dist/
@@ -100,42 +97,16 @@ The Astro app walks `files/` at build time, respects per-folder `.dotignore` ent
 
 ## Git Flow
 
-The repo follows a `develop` → `main` flow with automated version bumping and tagging:
-
-### Available Hooks
-
-- **pre-commit**: auto-increments the patch version (e.g., `0.1.0` → `0.1.1`) when committing non-markdown files on `develop`.
-- **post-merge**: auto-increments the minor version (e.g., `0.1.5` → `0.2.0`) when merging `develop` into `main`, then creates an annotated tag with the changelog and syncs the bump back to `develop`.
-
-### Installation
-
-Hooks are installed automatically on `npm install`. To install/reinstall manually:
+The repo follows a `develop` → `main` flow. Releases are done with [synkro](https://github.com/equero/synkro):
 
 ```bash
-npm run hooks:install
+synkro status            # what the next release would contain
+synkro sync              # merge develop into main, bump minor, tag, push
+synkro sync --patch      # patch bump (--major for major)
+synkro sync --dry-run    # show what would happen, change nothing
 ```
 
-To uninstall:
-
-```bash
-npm run hooks:uninstall
-```
-
-For more details, see [`.githooks/README.md`](./.githooks/README.md).
-
-### Releasing (develop → main)
-
-```bash
-npm run sync:master            # default: minor bump + tag
-npm run sync:master -- --patch # patch bump (X.Y.Z+1)
-npm run sync:master -- --minor # minor bump (X.Y+1.0)
-npm run sync:master -- --major # major bump (X+1.0.0)
-npm run sync:master -- --no-tag # merge without bumping or tagging
-```
-
-Must be on `develop` with a clean working tree. The script pushes `develop`, merges into `main` (auto-resolving `package.json` conflicts in favor of `develop`), lets the `post-merge` hook bump + tag, then pushes `main`, `develop`, and the new tag.
-
-For details on each script, see [`scripts/README.md`](./scripts/README.md).
+Each release is a single merge commit on `main` that also carries the new version, tagged `vX.Y.Z` with a changelog. `develop` is fast-forwarded to it afterwards.
 
 ## Contributing
 

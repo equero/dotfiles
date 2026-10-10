@@ -1,6 +1,6 @@
 {
   "name": "@habakukbeneke/dotfiles",
-  "version": "0.1.5",
+  "version": "0.2.0",
   "description": "Personal dotfiles + tooling, synced across machines via Git, browsable as a static Astro site.",
   "author": {
     "name": "Enrique Quero Vilar",
@@ -32,10 +32,6 @@
     "build": "npm --prefix web run build",
     "preview": "npm --prefix web run preview",
     "lint": "npm --prefix web run lint",
-    "install:web": "npm --prefix web install",
-    "hooks:install": "node scripts/install-hooks.mjs",
-    "hooks:uninstall": "node scripts/uninstall-hooks.mjs",
-    "sync:master": "node scripts/sync-master.mjs",
-    "prepare": "node scripts/install-hooks.mjs"
+    "install:web": "npm --prefix web install"
   }
 }
