@@ -41,7 +41,6 @@ const SPECIAL_BY_NAME: Record<string, BundledLanguage> = {
   ".dotignore": "ini",
   Dockerfile: "docker",
   Makefile: "make",
-  "git-flow-init": "javascript",
 };
 
 export function detectLang(filename: string): BundledLanguage {

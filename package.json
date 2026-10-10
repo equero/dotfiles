@@ -1,6 +1,6 @@
 {
   "name": "@habakukbeneke/dotfiles",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Personal dotfiles + tooling, synced across machines via Git, browsable as a static Astro site.",
   "author": {
     "name": "Enrique Quero Vilar",
@@ -12,7 +12,6 @@
     "claude-code",
     "neovim",
     "astronvim",
-    "git-flow",
     "astro"
   ],
   "private": true,

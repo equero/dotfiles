@@ -63,16 +63,5 @@ fi
 ln -sf "$DOTFILES_DIR/nvim" "$NVIM_CONFIG"
 echo "  ✓ Neovim config"
 
-# ── bin/ scripts ───────────────────────────────────
-chmod +x "$DOTFILES_DIR/bin/git-flow-init" 2>/dev/null || true
-echo "  ✓ bin/git-flow-init (chmod +x)"
-
 echo ""
 echo "Done! Restart Claude Code and Neovim to apply changes."
-echo ""
-echo "To use the bootstrap CLI from anywhere, add bin/ to PATH:"
-echo "  Linux/macOS (bash):    echo 'export PATH=\"$DOTFILES_DIR/bin:\$PATH\"' >> ~/.bashrc"
-echo "  Linux/macOS (zsh):     echo 'export PATH=\"$DOTFILES_DIR/bin:\$PATH\"' >> ~/.zshrc"
-echo "  Windows (PowerShell):  [Environment]::SetEnvironmentVariable('Path', \$env:Path + ';$DOTFILES_DIR\\bin', 'User')"
-echo ""
-echo "Then: git-flow-init <project-path>"

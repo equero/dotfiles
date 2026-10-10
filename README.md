@@ -21,7 +21,7 @@ This repo collects the dotfiles, scripts, and editor configs I carry between mac
 - **[Biome](https://biomejs.dev/)** — lint + format
 - **[Vercel](https://vercel.com/)** — deploy + hosting
 
-Plus the dotfiles themselves: **Claude Code** (settings, commands, agents, statusline), **AstroNvim**, and a **git-flow bootstrap CLI**.
+Plus the dotfiles themselves: **Claude Code** (settings, commands, agents, statusline), and **AstroNvim**.
 
 ## Project Structure
 
@@ -34,8 +34,6 @@ Plus the dotfiles themselves: **Claude Code** (settings, commands, agents, statu
 │   │   ├── commands/         ← user-invocable /commands
 │   │   └── agents/           ← orchestrator subagents (model-routed)
 │   ├── nvim/                 ← AstroNvim configuration
-│   ├── git-flow/             ← templates: hooks + sync-master script
-│   ├── bin/                  ← cross-platform CLIs (git-flow-init)
 │   └── install.sh            ← symlink installer
 │
 ├── web/                      ← Astro app that renders files/ as a static site
@@ -56,8 +54,6 @@ bash install.sh
 ```
 
 The script creates symlinks from `$HOME` into `files/`, so edits stay in sync with Git.
-
-To use the bundled `git-flow-init` CLI from anywhere, add `files/bin/` to your `PATH` (`install.sh` prints the exact command for your shell).
 
 ## Claude Code Subagents
 
