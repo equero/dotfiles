@@ -63,5 +63,32 @@ fi
 ln -sf "$DOTFILES_DIR/nvim" "$NVIM_CONFIG"
 echo "  ✓ Neovim config"
 
+# ── Shell, Git, Kitty, mise ─────────────────────────
+# link <file in repo> <target>: symlink one file, backing up a real file first
+link() {
+  local src="$DOTFILES_DIR/$1" dest="$2"
+  mkdir -p "$(dirname "$dest")"
+  if [ -e "$dest" ] && [ ! -L "$dest" ]; then
+    echo "  ⚠ Backing up existing $dest to $dest.bak"
+    mv "$dest" "$dest.bak"
+  fi
+  ln -sfn "$src" "$dest"
+}
+
+CONFIG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}"
+
+link bash/bashrc "$HOME/.bashrc"
+echo "  ✓ Bash config"
+link git/gitconfig "$HOME/.gitconfig"
+echo "  ✓ Git config"
+link mise/config.toml "$CONFIG_HOME/mise/config.toml"
+echo "  ✓ mise config"
+
+# Kitty has no Windows build
+if [[ "$OSTYPE" != "msys" && "$OSTYPE" != "cygwin" && "$OSTYPE" != "win32" ]]; then
+  link kitty/kitty.conf "$CONFIG_HOME/kitty/kitty.conf"
+  echo "  ✓ Kitty config"
+fi
+
 echo ""
 echo "Done! Restart Claude Code and Neovim to apply changes."

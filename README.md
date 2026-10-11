@@ -21,7 +21,7 @@ This repo collects the dotfiles, scripts, and editor configs I carry between mac
 - **[Biome](https://biomejs.dev/)** — lint + format
 - **[Vercel](https://vercel.com/)** — deploy + hosting
 
-Plus the dotfiles themselves: **Claude Code** (settings, commands, agents, statusline), and **Neovim** (kickstart.nvim based).
+Plus the dotfiles themselves: **Claude Code** (settings, commands, agents, statusline), **Neovim** (kickstart.nvim based), bash, git, kitty and mise.
 
 ## Project Structure
 
@@ -34,6 +34,10 @@ Plus the dotfiles themselves: **Claude Code** (settings, commands, agents, statu
 │   │   ├── commands/         ← user-invocable /commands
 │   │   └── agents/           ← orchestrator subagents (model-routed)
 │   ├── nvim/                 ← Neovim configuration (kickstart.nvim based)
+│   ├── bash/bashrc           ← ~/.bashrc (mise, `dev` distrobox helper, prompt)
+│   ├── git/gitconfig         ← ~/.gitconfig (identity, default branch)
+│   ├── kitty/kitty.conf      ← kitty terminal (Catppuccin Mocha, splits)
+│   ├── mise/config.toml      ← mise tool versions (node LTS)
 │   └── install.sh            ← symlink installer
 │
 ├── web/                      ← Astro app that renders files/ as a static site
