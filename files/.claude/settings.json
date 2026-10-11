@@ -2,7 +2,7 @@
   "model": "opus",
   "statusLine": {
     "type": "command",
-    "command": "node ~/.claude/statusline.js",
+    "command": "node ~/.claude/statusline.cjs",
     "padding": 0
   },
   "enabledPlugins": {

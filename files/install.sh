@@ -25,11 +25,11 @@ ln -sf "$DOTFILES_DIR/.claude/keybindings.json" "$CLAUDE_DIR/keybindings.json"
 echo "  ✓ Claude keybindings"
 
 # Symlink statusline
-ln -sf "$DOTFILES_DIR/.claude/statusline.js" "$CLAUDE_DIR/statusline.js"
+ln -sf "$DOTFILES_DIR/.claude/statusline.cjs" "$CLAUDE_DIR/statusline.cjs"
 echo "  ✓ Claude statusline"
 
 # Cleanup legacy bash statusline if present
-rm -f "$CLAUDE_DIR/statusline-command.sh"
+rm -f "$CLAUDE_DIR/statusline-command.sh" "$CLAUDE_DIR/statusline.js"
 
 # Symlink commands
 for cmd in "$DOTFILES_DIR/.claude/commands/"*.md; do
