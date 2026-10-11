@@ -21,7 +21,7 @@ This repo collects the dotfiles, scripts, and editor configs I carry between mac
 - **[Biome](https://biomejs.dev/)** — lint + format
 - **[Vercel](https://vercel.com/)** — deploy + hosting
 
-Plus the dotfiles themselves: **Claude Code** (settings, commands, agents, statusline), and **AstroNvim**.
+Plus the dotfiles themselves: **Claude Code** (settings, commands, agents, statusline), and **Neovim** (kickstart.nvim based).
 
 ## Project Structure
 
@@ -33,7 +33,7 @@ Plus the dotfiles themselves: **Claude Code** (settings, commands, agents, statu
 │   │   ├── keybindings.json  ← custom key bindings (vim editor mode)
 │   │   ├── commands/         ← user-invocable /commands
 │   │   └── agents/           ← orchestrator subagents (model-routed)
-│   ├── nvim/                 ← AstroNvim configuration
+│   ├── nvim/                 ← Neovim configuration (kickstart.nvim based)
 │   └── install.sh            ← symlink installer
 │
 ├── web/                      ← Astro app that renders files/ as a static site

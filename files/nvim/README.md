@@ -1,34 +1,31 @@
-# AstroNvim Template
+# Neovim config
 
-**NOTE:** This is for AstroNvim v5+
+Based on [kickstart.nvim](https://github.com/nvim-lua/kickstart.nvim) (MIT, see `LICENSE.md`). Plugins are managed by Neovim's built-in `vim.pack`, and their exact versions are pinned in `nvim-pack-lock.json`.
 
-A template for getting started with [AstroNvim](https://github.com/AstroNvim/AstroNvim)
+Personal changes are marked with `-- [deck]` in `init.lua`. Extra plugins live in `lua/custom/plugins/` (one file per plugin, loaded automatically).
 
-## 🛠️ Installation
+## Requirements (Linux)
 
-#### Make a backup of your current nvim and shared folder
+- **Neovim 0.12+** (needed for `vim.pack`)
+- `git`, `make`, `gcc`, `unzip`
+- `ripgrep` and `fd` (Telescope search)
+- `node` + `npm` (Mason installs the web language servers with them)
+- `tree-sitter-cli` (builds treesitter parsers)
+- A [Nerd Font](https://www.nerdfonts.com/) in the terminal (JetBrainsMono Nerd Font)
 
-```shell
-mv ~/.config/nvim ~/.config/nvim.bak
-mv ~/.local/share/nvim ~/.local/share/nvim.bak
-mv ~/.local/state/nvim ~/.local/state/nvim.bak
-mv ~/.cache/nvim ~/.cache/nvim.bak
-```
+On Arch: `sudo pacman -S neovim git base-devel unzip ripgrep fd nodejs npm tree-sitter-cli`
 
-#### Create a new user repository from this template
+## Install
 
-Press the "Use this template" button above to create a new repository to store your user configuration.
+`files/install.sh` symlinks this folder to `~/.config/nvim`. Open `nvim` once: plugins, language servers and parsers download on their own. Run `:checkhealth` if something is missing.
 
-You can also just clone this repository directly if you do not want to track your user configuration in GitHub.
+## What's included
 
-#### Clone the repository
-
-```shell
-git clone https://github.com/<your_user>/<your_repository> ~/.config/nvim
-```
-
-#### Start Neovim
-
-```shell
-nvim
-```
+- **Web dev**: LSP for TypeScript/JavaScript, HTML, CSS, Tailwind, ESLint and JSON; Prettier (`prettierd`) on save
+- **Search**: Telescope (`<leader>s…`)
+- **Completion**: blink.cmp + LuaSnip
+- **Git**: gitsigns (`<leader>h…`)
+- **File tree**: neo-tree (`\`)
+- **Sessions**: persistence.nvim (`<leader>p…`)
+- **Markdown**: render-markdown.nvim (`<leader>tm`)
+- **Theme**: Catppuccin Mocha

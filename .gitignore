@@ -10,7 +10,7 @@ Thumbs.db
 .env
 
 # Neovim
-files/nvim/lazy-lock.json
+files/nvim/spell/
 
 # Astro
 dist/
