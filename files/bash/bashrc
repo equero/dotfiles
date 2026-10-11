@@ -1,0 +1,33 @@
+#
+# ~/.bashrc
+#
+
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
+
+
+export PATH="$HOME/.local/bin:$PATH"
+
+# mise (version manager) — only present inside the 'dev' distrobox
+command -v mise >/dev/null && eval "$(mise activate bash)"
+
+# dev: enter the 'dev' distrobox, or run a command in it (e.g. `dev nvim .`)
+dev() {
+  if [[ "$CONTAINER_ID" == "dev" ]]; then
+    if [[ $# -gt 0 ]]; then "$@"; else echo "Ya estás en dev"; fi
+  elif [[ $# -gt 0 ]]; then
+    # Interactive shell so ~/.bashrc (mise, PATH) is loaded inside the container
+    distrobox enter dev -- bash -ic '"$@"' bash "$@"
+  else
+    distrobox enter dev
+  fi
+}
+
+# Load Angular CLI autocompletion (only if ng is installed).
+command -v ng >/dev/null && source <(ng completion script)
+
+# Prompt inside the 'dev' distrobox: equero@dev ~/ruta $  (Catppuccin Mocha colors)
+# Only the displayed name changes; the real user is still 'deck' (shared with the host).
+if [[ "$CONTAINER_ID" == "dev" ]]; then
+  PS1='\[\e[38;2;203;166;247m\]equero\[\e[38;2;108;112;134m\]@\[\e[38;2;137;180;250m\]dev \[\e[38;2;166;227;161m\]\w\[\e[0m\] \$ '
+fi
