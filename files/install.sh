@@ -16,10 +16,6 @@ mkdir -p "$CLAUDE_DIR/commands" "$CLAUDE_DIR/agents"
 ln -sf "$DOTFILES_DIR/.claude/settings.json" "$CLAUDE_DIR/settings.json"
 echo "  ✓ Claude settings"
 
-# Symlink global instructions
-ln -sf "$DOTFILES_DIR/.claude/CLAUDE.md" "$CLAUDE_DIR/CLAUDE.md"
-echo "  ✓ Claude global instructions"
-
 # Symlink keybindings
 ln -sf "$DOTFILES_DIR/.claude/keybindings.json" "$CLAUDE_DIR/keybindings.json"
 echo "  ✓ Claude keybindings"
