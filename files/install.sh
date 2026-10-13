@@ -1,6 +1,6 @@
 #!/bin/bash
 # Dotfiles installer — creates symlinks from ~ to this repo
-# Usage: git clone <repo> ~/dotfiles && cd ~/dotfiles && bash install.sh
+# Usage: git clone <repo> ~/dotfiles && bash ~/dotfiles/files/install.sh
 
 set -e
 

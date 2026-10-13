@@ -2,7 +2,7 @@
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 [![Deployed on Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-000000?logo=vercel&logoColor=white)](https://dotfiles.equero.dev)
-[![Version](https://img.shields.io/badge/version-0.1.4-green.svg)](https://github.com/hbeneke/dotfiles)
+[![Version](https://img.shields.io/github/v/tag/equero/dotfiles?label=version&color=green)](https://github.com/equero/dotfiles/tags)
 
 Personal configuration files + tooling, synced across machines via Git and browsable as a static [Astro](https://astro.build) site.
 
@@ -12,7 +12,20 @@ Personal configuration files + tooling, synced across machines via Git and brows
 
 This repo collects the dotfiles, scripts, and editor configs I carry between machines — plus a small Astro site that renders the tree so anyone can browse it from the web without cloning. Everything inside [`files/`](./files) is symlinked into `$HOME` by [`files/install.sh`](./files/install.sh); the [`web/`](./web) folder builds the static site that ships to [dotfiles.equero.dev](https://dotfiles.equero.dev).
 
-## Tech Stack
+## What's Inside
+
+| Config | Target | Highlights |
+|---|---|---|
+| [Claude Code](./files/.claude) | `~/.claude/` | Global rules, model-routed subagents, `/audit` and `/ssh` commands, Catppuccin status line with context and plan usage |
+| [Neovim](./files/nvim) | `~/.config/nvim` | kickstart.nvim on Neovim 0.12's built-in `vim.pack`, plugin versions pinned in a lock file, web-dev LSPs, file tree, session restore |
+| [Bash](./files/bash/bashrc) | `~/.bashrc` | mise activation, `dev` helper for the distrobox container, Catppuccin prompt |
+| [Git](./files/git/gitconfig) | `~/.gitconfig` | Identity, `main` as default branch |
+| [kitty](./files/kitty/kitty.conf) | `~/.config/kitty/kitty.conf` | Catppuccin Mocha, JetBrainsMono Nerd Font, splits and tabs keymaps |
+| [mise](./files/mise/config.toml) | `~/.config/mise/config.toml` | Node LTS |
+
+Everything is themed with [Catppuccin Mocha](https://catppuccin.com). The main machine is a Steam Deck (SteamOS + an Arch [distrobox](https://distrobox.it) called `dev`), but nothing depends on it.
+
+## Tech Stack (website)
 
 - **[Astro](https://astro.build/)** — static site generator for the browsable view
 - **[TypeScript](https://www.typescriptlang.org/)** — type-safe tree walker and renderers
@@ -21,7 +34,6 @@ This repo collects the dotfiles, scripts, and editor configs I carry between mac
 - **[Biome](https://biomejs.dev/)** — lint + format
 - **[Vercel](https://vercel.com/)** — deploy + hosting
 
-Plus the dotfiles themselves: **Claude Code** (settings, commands, agents, statusline), **Neovim** (kickstart.nvim based), bash, git, kitty and mise.
 
 ## Project Structure
 
@@ -52,12 +64,15 @@ Plus the dotfiles themselves: **Claude Code** (settings, commands, agents, statu
 ## Dotfiles Installation
 
 ```bash
-git clone git@github.com:hbeneke/dotfiles.git ~/dotfiles
-cd ~/dotfiles/files
-bash install.sh
+git clone git@github.com:equero/dotfiles.git ~/dotfiles
+bash ~/dotfiles/files/install.sh
 ```
 
-The script creates symlinks from `$HOME` into `files/`, so edits stay in sync with Git.
+The script creates symlinks from `$HOME` into `files/`, so edits stay in sync with Git. It's safe to run again: an existing real file is renamed to `.bak` before it's replaced, and existing symlinks are just updated.
+
+Requirements: `git`, `node` (for the Claude Code status line) and whatever each config is for (Neovim 0.12+, kitty, mise). The Neovim requirements are listed in [`files/nvim/README.md`](./files/nvim/README.md). On Windows (Git Bash) everything except kitty is linked.
+
+> **Heads-up:** your live configs point into this working copy. Checking out a branch or tag that lacks one of them breaks it until you switch back (for example, git loses your identity if `files/git/gitconfig` is missing). Keep the clone on `develop` or `main`.
 
 ## Claude Code Subagents
 
@@ -78,7 +93,19 @@ The script creates symlinks from `$HOME` into `files/`, so edits stay in sync wi
 
 ### Settings
 
-[`files/.claude/settings.json`](./files/.claude/settings.json) pins the defaults carried across machines: `model: opus`, `effortLevel: medium`, `editorMode: vim`, fullscreen TUI, the Node statusline, and the enabled plugins (official `code-review`, `code-simplifier`, `frontend-design`, `github`, `playground`, `vercel`, plus the third-party `caveman` marketplace). Machine-local permission grants live in `settings.local.json`, which is gitignored on purpose.
+[`files/.claude/settings.json`](./files/.claude/settings.json) pins the defaults carried across machines: `model: opus`, `effortLevel: medium`, `editorMode: vim`, fullscreen TUI, the status line, and the enabled plugins (official `code-review`, `code-simplifier`, `frontend-design`, `github`, `playground`, `vercel`, plus the third-party `caveman` marketplace). Machine-local permission grants live in `settings.local.json`, which is gitignored on purpose.
+
+### Status line
+
+[`files/.claude/statusline.cjs`](./files/.claude/statusline.cjs) is a dependency-free Node script (Windows, macOS and Linux) that renders one line in Catppuccin Mocha colors:
+
+```text
+🤖 Opus | 📁 dotfiles | 🌿 develop +12 -3 | ████░░░░░░ 42% | ⏳ 5h 23% (2h05m) · 7d 41%
+```
+
+Model, folder, git branch (and worktree) with uncommitted line changes, context window usage, and plan usage for the 5-hour and 7-day limits (Pro/Max plans). The bars turn yellow at 60% and red at 80%. It needs a truecolor terminal.
+
+### Rules and key bindings
 
 [`files/.claude/CLAUDE.md`](./files/.claude/CLAUDE.md) holds the global rules injected into every project, and [`files/.claude/keybindings.json`](./files/.claude/keybindings.json) the custom key bindings.
 
@@ -101,8 +128,8 @@ The repo follows a `develop` → `main` flow. Releases are done with [synkro](ht
 
 ```bash
 synkro status            # what the next release would contain
-synkro sync              # merge develop into main, bump minor, tag, push
-synkro sync --patch      # patch bump (--major for major)
+synkro sync --patch      # merge develop into main, bump patch, tag, push (the usual)
+synkro sync              # same, minor bump (--major for major)
 synkro sync --dry-run    # show what would happen, change nothing
 ```
 
@@ -125,12 +152,11 @@ This project is licensed under the **GNU General Public License v3.0** — see t
 
 ## Author
 
-### Enrique Quero (Habakuk Beneke)
+### Enrique Quero
 
 - Website: [equero.dev](https://equero.dev)
-- GitHub: [@hbeneke](https://github.com/hbeneke)
+- GitHub: [@equero](https://github.com/equero)
 - LinkedIn: [equerodev](https://www.linkedin.com/in/equerodev/)
-- X (Twitter): [@habakukbeneke](https://x.com/habakukbeneke)
 
 ---
 
