@@ -39,6 +39,8 @@ const SPECIAL_BY_NAME: Record<string, BundledLanguage> = {
   "pre-push": "bash",
   ".gitignore": "ini",
   ".dotignore": "ini",
+  bashrc: "bash",
+  gitconfig: "ini",
   Dockerfile: "docker",
   Makefile: "make",
 };

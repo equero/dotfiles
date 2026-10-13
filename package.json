@@ -1,11 +1,10 @@
 {
-  "name": "@habakukbeneke/dotfiles",
-  "version": "0.4.1",
+  "name": "@equerodev/dotfiles",
+  "version": "0.4.2",
   "description": "Personal dotfiles + tooling, synced across machines via Git, browsable as a static Astro site.",
   "author": {
-    "name": "Enrique Quero Vilar",
-    "nickname": "Habakuk Beneke",
-    "e-mail": "habakukBeneke [at] proton [dot] me"
+    "name": "Enrique Quero",
+    "url": "https://equero.dev"
   },
   "keywords": [
     "dotfiles",
@@ -18,11 +17,11 @@
   "license": "GPL-3.0-only",
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/hbeneke/dotfiles.git"
+    "url": "git+ssh://git@github.com/equero/dotfiles.git"
   },
-  "homepage": "https://github.com/hbeneke/dotfiles#readme",
+  "homepage": "https://github.com/equero/dotfiles#readme",
   "bugs": {
-    "url": "https://github.com/hbeneke/dotfiles/issues"
+    "url": "https://github.com/equero/dotfiles/issues"
   },
   "scripts": {
     "dev": "npm --prefix web run dev",

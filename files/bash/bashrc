@@ -8,6 +8,10 @@
 
 export PATH="$HOME/.local/bin:$PATH"
 
+# Default editor (git commit messages, Claude Code's Ctrl+G…). Only nvim is installed, not vim.
+export EDITOR=nvim
+export VISUAL=nvim
+
 # mise (version manager) — only present inside the 'dev' distrobox
 command -v mise >/dev/null && eval "$(mise activate bash)"
 

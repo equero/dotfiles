@@ -1,5 +1,5 @@
 {
-  "name": "@habakukbeneke/dotfiles-web",
+  "name": "@equerodev/dotfiles-web",
   "version": "0.0.0",
   "description": "Astro app that renders the dotfiles repo as a browsable static site.",
   "private": true,
