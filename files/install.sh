@@ -59,7 +59,7 @@ fi
 ln -sf "$DOTFILES_DIR/nvim" "$NVIM_CONFIG"
 echo "  ✓ Neovim config"
 
-# ── Shell, Git, Kitty, mise ─────────────────────────
+# ── Shell, Git, Kitty, mise, lazygit ────────────────
 # link <file in repo> <target>: symlink one file, backing up a real file first
 link() {
   local src="$DOTFILES_DIR/$1" dest="$2"
@@ -79,6 +79,8 @@ link git/gitconfig "$HOME/.gitconfig"
 echo "  ✓ Git config"
 link mise/config.toml "$CONFIG_HOME/mise/config.toml"
 echo "  ✓ mise config"
+link lazygit/config.yml "$CONFIG_HOME/lazygit/config.yml"
+echo "  ✓ lazygit config"
 
 # Kitty has no Windows build
 if [[ "$OSTYPE" != "msys" && "$OSTYPE" != "cygwin" && "$OSTYPE" != "win32" ]]; then

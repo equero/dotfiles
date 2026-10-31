@@ -22,6 +22,7 @@ This repo collects the dotfiles, scripts, and editor configs I carry between mac
 | [Git](./files/git/gitconfig) | `~/.gitconfig` | Identity, `main` as default branch |
 | [kitty](./files/kitty/kitty.conf) | `~/.config/kitty/kitty.conf` | Catppuccin Mocha, JetBrainsMono Nerd Font, splits and tabs keymaps |
 | [mise](./files/mise/config.toml) | `~/.config/mise/config.toml` | Node LTS |
+| [lazygit](./files/lazygit/config.yml) | `~/.config/lazygit/config.yml` | Catppuccin Mocha theme, Nerd Font icons |
 
 Everything is themed with [Catppuccin Mocha](https://catppuccin.com). The main machine is a Steam Deck (SteamOS + an Arch [distrobox](https://distrobox.it) called `dev`), but nothing depends on it.
 
@@ -49,6 +50,7 @@ Everything is themed with [Catppuccin Mocha](https://catppuccin.com). The main m
 │   ├── git/gitconfig         ← ~/.gitconfig (identity, default branch)
 │   ├── kitty/kitty.conf      ← kitty terminal (Catppuccin Mocha, splits)
 │   ├── mise/config.toml      ← mise tool versions (node LTS)
+│   ├── lazygit/config.yml    ← lazygit (Catppuccin Mocha, Nerd Font icons)
 │   └── install.sh            ← symlink installer
 │
 ├── web/                      ← Astro app that renders files/ as a static site
