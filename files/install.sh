@@ -16,10 +16,6 @@ mkdir -p "$CLAUDE_DIR/commands" "$CLAUDE_DIR/agents"
 ln -sf "$DOTFILES_DIR/.claude/settings.json" "$CLAUDE_DIR/settings.json"
 echo "  ✓ Claude settings"
 
-# Symlink global instructions
-ln -sf "$DOTFILES_DIR/.claude/CLAUDE.md" "$CLAUDE_DIR/CLAUDE.md"
-echo "  ✓ Claude global instructions"
-
 # Symlink keybindings
 ln -sf "$DOTFILES_DIR/.claude/keybindings.json" "$CLAUDE_DIR/keybindings.json"
 echo "  ✓ Claude keybindings"
@@ -63,7 +59,7 @@ fi
 ln -sf "$DOTFILES_DIR/nvim" "$NVIM_CONFIG"
 echo "  ✓ Neovim config"
 
-# ── Shell, Git, Kitty, mise ─────────────────────────
+# ── Shell, Git, Kitty, mise, lazygit ────────────────
 # link <file in repo> <target>: symlink one file, backing up a real file first
 link() {
   local src="$DOTFILES_DIR/$1" dest="$2"
@@ -83,6 +79,8 @@ link git/gitconfig "$HOME/.gitconfig"
 echo "  ✓ Git config"
 link mise/config.toml "$CONFIG_HOME/mise/config.toml"
 echo "  ✓ mise config"
+link lazygit/config.yml "$CONFIG_HOME/lazygit/config.yml"
+echo "  ✓ lazygit config"
 
 # Kitty has no Windows build
 if [[ "$OSTYPE" != "msys" && "$OSTYPE" != "cygwin" && "$OSTYPE" != "win32" ]]; then

@@ -22,6 +22,7 @@ This repo collects the dotfiles, scripts, and editor configs I carry between mac
 | [Git](./files/git/gitconfig) | `~/.gitconfig` | Identity, `main` as default branch |
 | [kitty](./files/kitty/kitty.conf) | `~/.config/kitty/kitty.conf` | Catppuccin Mocha, JetBrainsMono Nerd Font, splits and tabs keymaps |
 | [mise](./files/mise/config.toml) | `~/.config/mise/config.toml` | Node LTS |
+| [lazygit](./files/lazygit/config.yml) | `~/.config/lazygit/config.yml` | Catppuccin Mocha theme, Nerd Font icons |
 
 Everything is themed with [Catppuccin Mocha](https://catppuccin.com). The main machine is a Steam Deck (SteamOS + an Arch [distrobox](https://distrobox.it) called `dev`), but nothing depends on it.
 
@@ -41,7 +42,6 @@ Everything is themed with [Catppuccin Mocha](https://catppuccin.com). The main m
 .
 ├── files/                    ← actual dotfiles content (symlinked to $HOME)
 │   ├── .claude/              ← Claude Code settings, statusline, commands, agents
-│   │   ├── CLAUDE.md         ← global instructions applied to every project
 │   │   ├── keybindings.json  ← custom key bindings (vim editor mode)
 │   │   ├── commands/         ← user-invocable /commands
 │   │   └── agents/           ← orchestrator subagents (model-routed)
@@ -50,6 +50,7 @@ Everything is themed with [Catppuccin Mocha](https://catppuccin.com). The main m
 │   ├── git/gitconfig         ← ~/.gitconfig (identity, default branch)
 │   ├── kitty/kitty.conf      ← kitty terminal (Catppuccin Mocha, splits)
 │   ├── mise/config.toml      ← mise tool versions (node LTS)
+│   ├── lazygit/config.yml    ← lazygit (Catppuccin Mocha, Nerd Font icons)
 │   └── install.sh            ← symlink installer
 │
 ├── web/                      ← Astro app that renders files/ as a static site
@@ -105,9 +106,9 @@ Requirements: `git`, `node` (for the Claude Code status line) and whatever each 
 
 Model, folder, git branch (and worktree) with uncommitted line changes, context window usage, and plan usage for the 5-hour and 7-day limits (Pro/Max plans). The bars turn yellow at 60% and red at 80%. It needs a truecolor terminal.
 
-### Rules and key bindings
+### Key bindings
 
-[`files/.claude/CLAUDE.md`](./files/.claude/CLAUDE.md) holds the global rules injected into every project, and [`files/.claude/keybindings.json`](./files/.claude/keybindings.json) the custom key bindings.
+[`files/.claude/keybindings.json`](./files/.claude/keybindings.json) holds the custom key bindings. Global rules (`~/.claude/CLAUDE.md`) are personal and kept out of this repo.
 
 The main agent acts as the router — it reads each subagent's `description` and delegates. Edit any `.md` file in `files/.claude/agents/` to tune routing or swap models (`model: haiku | sonnet | opus | inherit`).
 
