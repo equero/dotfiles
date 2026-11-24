@@ -12,7 +12,8 @@
     "code-simplifier@claude-plugins-official": true,
     "vercel@claude-plugins-official": true,
     "playground@claude-plugins-official": true,
-    "caveman@caveman": true
+    "caveman@caveman": true,
+    "modern-web-guidance@googlechrome": true
   },
   "extraKnownMarketplaces": {
     "caveman": {
@@ -20,11 +21,22 @@
         "source": "github",
         "repo": "JuliusBrussee/caveman"
       }
+    },
+    "googlechrome": {
+      "source": {
+        "source": "github",
+        "repo": "GoogleChrome/modern-web-guidance"
+      }
     }
   },
   "effortLevel": "medium",
   "autoUpdatesChannel": "latest",
   "tui": "fullscreen",
   "skipDangerousModePermissionPrompt": true,
-  "editorMode": "vim"
+  "editorMode": "vim",
+  "permissions": {
+    "allow": [
+      "Bash(npx -y modern-web-guidance@latest:*)"
+    ]
+  }
 }
