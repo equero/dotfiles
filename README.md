@@ -94,7 +94,7 @@ Requirements: `git`, `node` (for the Claude Code status line) and whatever each 
 
 ### Settings
 
-[`files/.claude/settings.json`](./files/.claude/settings.json) pins the defaults carried across machines: `model: opus`, `effortLevel: medium`, `editorMode: vim`, fullscreen TUI, the status line, and the enabled plugins (official `code-review`, `code-simplifier`, `frontend-design`, `github`, `playground`, `vercel`, plus the third-party `caveman` marketplace). Machine-local permission grants live in `settings.local.json`, which is gitignored on purpose.
+[`files/.claude/settings.json`](./files/.claude/settings.json) pins the defaults carried across machines: `model: opus`, `effortLevel: medium`, `editorMode: vim`, fullscreen TUI, the status line, and the enabled plugins (official `code-review`, `code-simplifier`, `frontend-design`, `github`, `playground`, `vercel`, plus the third-party `caveman` marketplace and the Chrome team's `modern-web-guidance`, which gives Claude up-to-date HTML/CSS/JS guidance). The only shared permission is `Bash(npx -y modern-web-guidance@latest:*)`, which that plugin needs to fetch its guides. Machine-local permission grants live in `settings.local.json`, which is gitignored on purpose.
 
 ### Status line
 
