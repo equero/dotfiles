@@ -118,19 +118,23 @@
     font-weight: bold;
   }
 
-  /* Shiki overrides — let dark theme apply on root.dark */
+  /* Shiki overrides — let dark theme apply on root.dark.
+     Shiki writes its colors as inline styles: only !important beats them. */
   .shiki,
   .shiki span {
+    /* biome-ignore lint/complexity/noImportantStyles: overrides Shiki's inline style */
     background-color: rgb(var(--surface)) !important;
-  }
-
-  :root:not(.dark) .shiki,
-  :root:not(.dark) .shiki span {
-    color: var(--shiki-light) !important;
   }
 
   .dark .shiki,
   .dark .shiki span {
+    /* biome-ignore lint/complexity/noImportantStyles: overrides Shiki's inline style */
     color: var(--shiki-dark) !important;
+  }
+
+  :root:not(.dark) .shiki,
+  :root:not(.dark) .shiki span {
+    /* biome-ignore lint/complexity/noImportantStyles: overrides Shiki's inline style */
+    color: var(--shiki-light) !important;
   }
 }
