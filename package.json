@@ -1,6 +1,6 @@
 {
   "name": "@equerodev/dotfiles",
-  "version": "0.4.4",
+  "version": "0.5.0",
   "description": "Personal dotfiles + tooling, synced across machines via Git, browsable as a static Astro site.",
   "author": {
     "name": "Enrique Quero",
